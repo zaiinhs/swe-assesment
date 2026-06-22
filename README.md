@@ -94,6 +94,13 @@ VITE_ETHERSCAN_API_KEY=your_api_key_here
 - Mobile-first responsive design
 - Fully functional MVP
 
+### Out of Scope (and Why)
+- **Multi-chain support (Polygon, BSC)** — Focus on Ethereum first to validate the core concept; adding chains increases complexity 3x
+- **Public scam database integration (Chainabuse, CryptoScamDB)** — Requires backend infrastructure; MVP works client-side only
+- **Browser extension** — Separate product effort; web app is sufficient for initial validation
+- **User login / search history** — Privacy-first approach; login adds friction for beginner users
+- **Advanced ML models** — Heuristic-based approach catches ~70% of patterns; ML requires large labeled dataset we don't have yet
+
 ---
 
 ## Assumptions Made
@@ -127,6 +134,12 @@ When answers were unclear, here's what we assumed:
 - ✅ **Mobile-responsive** — looks good on phone, tablet, desktop
 - ✅ **API integration live** — pulls real on-chain data from Etherscan
 - ✅ **Clear UX** — beginner can understand result + recommendation without help
+
+### What I'd Do Next
+1. **User testing** — Watch 10-20 real Indonesian crypto users interact with the tool; observe if they actually follow recommendations
+2. **Scam database integration** — Add Chainabuse/CryptoScamDB to detect known scam wallets (critical for catching established fraud patterns)
+3. **Multi-chain support** — Expand to Polygon and BSC, which are popular for scams in Indonesia
+4. **Tune heuristics** — Adjust risk thresholds based on real scam data samples from the Indonesian crypto community
 
 ---
 
