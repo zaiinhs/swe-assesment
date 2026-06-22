@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --color-malam: #0e1525;
+  --color-kanvas: #16213a;
+  --color-kanvas-terang: #1e2c4a;
+  --color-lampu: #ffb02e;
+  --color-lampu-cyan: #06b6d4;
+  --color-lampu-pink: #f87171;
+  --color-aman: #2fbe74;
+  --color-waspada: #f2994a;
+  --color-bahaya: #eb5757;
+  --color-kabut: #8b96ae;
+  --color-embun: #f3f6fc;
+  --color-garis: rgba(255, 255, 255, 0.05);
+  --color-garis-hover: rgba(255, 255, 255, 0.08);
+  --color-glass: rgba(10, 14, 23, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+
+body {
+  background: var(--color-malam);
+  color: var(--color-embun);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+#root { min-height: 100dvh; }
+input::placeholder { color: var(--color-kabut); opacity: 0.4; }
+
+/* Background - refined gradients, less overwhelming */
+.bg-void {
+  background:
+    radial-gradient(ellipse 800px 500px at 20% 0%, rgba(139,92,246,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 400px at 80% 0%, rgba(6,182,212,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 500px at 50% 100%, rgba(236,72,153,0.03) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0e17 0%, #101623 50%, #0a0e17 100%);
+}
+
+/* Subtle grid overlay */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(139,92,246,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glass - refined, less blur */
+.glass { 
+  background: var(--color-glass); 
+  backdrop-filter: blur(20px); 
+  -webkit-backdrop-filter: blur(20px); 
+  border: 1px solid var(--color-glass-border); 
+}
+.glass-strong { 
+  background: rgba(10, 14, 23, 0.8); 
+  backdrop-filter: blur(28px); 
+  -webkit-backdrop-filter: blur(28px); 
+  border: 1px solid var(--color-glass-border); 
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes float-delay { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes float-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes pulse-ring { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.5);opacity:0} }
+.pulse-ring { animation: pulse-ring 1.5s cubic-bezier(0.215,0.61,0.355,1) infinite; }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+.animate-shimmer { 
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.04) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 2s infinite; 
+}
+@keyframes gradient-shift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+.animate-gradient { background-size:200% 200%;animation:gradient-shift 4s ease infinite; }
+
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.animate-slide-up { animation:slideUp 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.animate-fade-in { animation:fadeIn 0.6s ease forwards; }
+@keyframes scaleIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+.animate-scale-in { animation:scaleIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* Refined glow text - less aggressive */
+.text-glow {
+  text-shadow: 0 0 30px rgba(139,92,246,0.2), 0 0 60px rgba(139,92,246,0.08);
+}
+
+/* Subtle scanline effect */
+.scanline {
+  position: relative;
+}
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.2), transparent);
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+  .text-glow { text-shadow: none; }
+}
