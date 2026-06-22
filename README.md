@@ -156,7 +156,7 @@ When answers were unclear, here's what we assumed:
 
 ## Deployment
 
-Live URL: (deploying to Vercel — link coming)
+Live URL: https://swe-assesment.vercel.app/
 
 ### How to Deploy on Vercel
 ```bash
