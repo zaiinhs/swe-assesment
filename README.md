@@ -4,6 +4,17 @@
 
 **Cek Dompet** is a real-time crypto wallet safety checker for beginner investors in Indonesia. Before you send cryptocurrency to someone, paste their wallet address and get an instant risk assessment based on on-chain transaction history — all in 2-3 seconds, no technical knowledge required.
 
+## Screenshots
+
+### Desktop View
+![Desktop Landing Page](docs/screenshot-testing.png)
+
+### Risk Assessment Result
+![Risk Assessment Result - AMAN](docs/screenshot-result.png)
+
+### Mobile View
+![Mobile Responsive Design](docs/screenshot-mobile.png)
+
 ## How to Run It
 
 ### Prerequisites
