@@ -83,13 +83,6 @@ VITE_ETHERSCAN_API_KEY=your_api_key_here
 - Mobile-first responsive design
 - Fully functional MVP
 
-### Out-of-Scope ❌ (Next Iterations)
-- Multi-chain support (Polygon, BSC, etc.)
-- Integration with public scam databases (Chainabuse, CryptoScamDB)
-- Browser extension for auto-checking
-- User login / search history
-- Advanced machine learning models
-
 ---
 
 ## Assumptions Made
@@ -123,22 +116,6 @@ When answers were unclear, here's what we assumed:
 - ✅ **Mobile-responsive** — looks good on phone, tablet, desktop
 - ✅ **API integration live** — pulls real on-chain data from Etherscan
 - ✅ **Clear UX** — beginner can understand result + recommendation without help
-
-### What We'd Do Next (Post-MVP)
-
-**Phase 1 (2-3 weeks)**
-- User testing with 10-20 actual Indonesian crypto users (observe behavior, collect feedback)
-- Tune heuristic thresholds based on real scam data samples
-- Add Chainabuse/CryptoScamDB integration (critical: detect known scam wallets)
-
-**Phase 2 (1-2 months)**
-- Multi-chain support (Polygon, BSC — chains popular for scams in Indonesia)
-- Browser extension (auto-check when user pastes address in chat/email)
-- Community reporting (users flag suspicious wallets, crowdsource scam database)
-
-**Phase 3 (future)**
-- API for exchanges / payment processors (let them embed this in their warning flow)
-- Machine learning (pattern recognition across time, refine false positive/negative rates)
 
 ---
 
@@ -179,29 +156,67 @@ VITE_ETHERSCAN_API_KEY=<your_key>
 
 ## How AI Was Used
 
+From the very first brainstorming session to the final website, AI acted as a partner throughout the entire process — from idea research, concept validation, to code implementation.
+
+### End-to-End AI Workflow
+
+```mermaid
+flowchart TD
+    A["1. Company Research\n(Claude AI + 9Router)"] --> B["2. Ideation & Brainstorming\n(Claude AI + DeepSeek)"]
+    B --> C["3. Concept Validation\n(Claude AI)"]
+    C --> D["4. MVP Scope Definition\n(Claude AI + DeepSeek)"]
+    D --> E["5. Architecture Design\n(Claude AI + Mimo)"]
+    E --> F["6. Code Implementation\n(DeepSeek + Mimo)"]
+    F --> G["7. Testing & Fixes\n(Opencode + Manual Review)"]
+    G --> H["8. Documentation\n(Mimo + Claude AI)"]
+
+    A -.- A1["Analyze Pixel8Labs & crypto domain"]
+    B -.- B1["Identify real problems in Indonesia's crypto industry"]
+    C -.- C1["Analyze competitors & market gaps"]
+    D -.- D1["Define persona & limit MVP scope"]
+    E -.- E1["Design component structure & data flow"]
+    F -.- F1["Generate code, debug, styling"]
+    G -.- G1["Fix color mismatch & over-engineering"]
+    H -.- H1["Write README & documentation"]
+
+    style A fill:#ffb02e,stroke:#333,color:#000
+    style H fill:#ffb02e,stroke:#333,color:#000
+    style B fill:#d97706,stroke:#333,color:#fff
+    style C fill:#d97706,stroke:#333,color:#fff
+    style D fill:#d97706,stroke:#333,color:#fff
+    style E fill:#0ea5e9,stroke:#333,color:#fff
+    style F fill:#0ea5e9,stroke:#333,color:#fff
+    style G fill:#10b981,stroke:#333,color:#fff
+```
+
 ### Where AI Helped ✅
 
-1. **Component Structure & React Patterns**
-   - AI generated clean, reusable component architecture (Button, AddressInput, ResultCard)
-   - Saved ~2 hours of boilerplate and naming conventions
-   
-2. **Tailwind CSS Responsive Design**
+1. **Research & Brainstorming**
+   - AI helped analyze Pixel8Labs as a blockchain company and identify real problems in Indonesia's crypto industry
+   - Generated the "Cek Dompet" concept aligned with the company's vision
+
+2. **Concept & Competitor Validation**
+   - AI mapped existing tools (Nomis, 0xScore, WalletScore.net) and found the gap: none in Indonesian for beginners
+
+3. **Scope & Persona Definition**
+   - AI helped define the "Dinda" user persona and limit MVP scope for focus
+
+4. **Component Structure & React Patterns**
+   - AI produced clean, reusable component architecture (Button, AddressInput, ResultCard)
+
+5. **Responsive Tailwind CSS Design**
    - AI created mobile-first utility patterns (e.g., `px-4 sm:px-5 md:px-6` for adaptive spacing)
-   - Prevented manual breakpoint calculations and media query debugging
 
-3. **Heuristic Logic Implementation**
+6. **Heuristic Logic**
    - AI structured the risk-scoring algorithm (age weighting, pattern detection)
-   - Saved time on threshold tuning and scoring formula design
 
-4. **CSS Animation & Visual Effects**
+7. **CSS Animation & Visual Effects**
    - AI designed glassmorphism effects, gradient animations, and smooth transitions
-   - Prevented excessive trial-and-error with cubic-bezier easing
 
-5. **Error Handling & State Management**
+8. **Error Handling & State Management**
    - AI suggested proper React state patterns for loading, error, and result states
-   - Prevented common pitfalls (state not resetting, uncaught API errors)
 
-### Where AI Got It Wrong ❌ (That I Caught)
+### Where AI Got It Wrong ❌ (That I Fixed)
 
 1. **Color Palette Mismatch**
    - **AI picked:** Purple (#8b5cf6) as primary brand color
@@ -214,8 +229,61 @@ VITE_ETHERSCAN_API_KEY=<your_key>
    - **Reality:** MVP only needs local useState — simpler, faster
    - **I fixed it:** Stripped down to minimal state, kept it understandable
 
+### AI Tools Architecture
+
+```mermaid
+flowchart LR
+    subgraph User["User (Me)"]
+        U["Prompt & Instructions"]
+    end
+
+    subgraph Router["9Router"]
+        R["Smart Routing\n(distributes prompts to the right model)"]
+    end
+
+    subgraph Models["AI Models"]
+        C["Claude AI\n(research, brainstorming,\narchitecture)"]
+        D["DeepSeek\n(code generation,\ndebugging, optimization)"]
+        M["Mimo\n(UI/UX, Tailwind CSS,\nanimations & visuals)"]
+    end
+
+    subgraph Action["Opencode"]
+        O["Execute & Apply\n(automatically runs commands,\nedits files, deploys)"]
+    end
+
+    U --> R
+    R -->|"Research & Analysis"| C
+    R -->|"Code & Logic"| D
+    R -->|"Design & Styling"| M
+    C --> O
+    D --> O
+    M --> O
+    O -->|"Output: Code, Files,\nConfigurations"| U
+
+    style U fill:#ffb02e,stroke:#333,color:#000
+    style R fill:#6366f1,stroke:#333,color:#fff
+    style C fill:#d97706,stroke:#333,color:#fff
+    style D fill:#0ea5e9,stroke:#333,color:#fff
+    style M fill:#10b981,stroke:#333,color:#fff
+    style O fill:#8b5cf6,stroke:#333,color:#fff
+```
+
 ### AI Tools Used
-- Code generation & debugging (Claude)
-- Tailwind CSS pattern suggestions (GitHub Copilot)
-- Component naming & structure (AI-assisted pair programming)
+
+| Tool | Function | When Used |
+|---|---|---|
+| **9Router** | Smart routing — distributes prompts to the most suitable AI model | Always the entry point; determines which model is optimal for each task |
+| **Claude AI** | Research, analysis, brainstorming, system architecture | Analyzing Pixel8Labs, validating concepts, defining personas, component structure |
+| **DeepSeek** | Code generation, debugging, logic optimization | Implementing heuristic logic, state management, error handling |
+| **Mimo** | UI/UX design, Tailwind CSS, animations & visuals | Responsive design, glassmorphism, gradient animations, styling |
+| **Opencode** | Automated execution — runs commands, edits files, deploys | Turns AI instructions into actual actions in the codebase |
+
+### Why This Combination?
+
+Each model has different strengths:
+- **Claude** excels in deep analysis and logical reasoning → ideal for research & architecture
+- **DeepSeek** excels in efficient code generation → ideal for code implementation
+- **Mimo** excels in visual understanding & UI → ideal for interface design
+- **9Router** ensures prompts are sent to the right model → no manual switching needed
+- **Opencode** bridges AI with the codebase → AI output is directly applied to files
 
